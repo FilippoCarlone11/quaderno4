@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 from utils.utils import *
 import datetime
+from random import randint
 
 st.subheader("Elenco :blue[Istruttori]")
 col1, col2 = st.columns(2)
@@ -12,8 +13,10 @@ def dataCorsi():
         start = datetime.date(1970, 12,1)
         end = datetime.date(1996, 12, 31)
         dates = col4.date_input("Date di nascita", [start, end])
-
-        dates_query = f"DataNascita >= '{dates[0].isoformat()}' AND DataNascita <= '{dates[1].isoformat()}'" if dates != '' else ''
+        if(len(dates)>1):
+            dates_query = f"DataNascita >= '{dates[0].isoformat()}' AND DataNascita <= '{dates[1].isoformat()}'" if dates != '' else ''
+        else:
+            dates_query = f"DataNascita >= '{dates[0].isoformat()}'" if dates != '' else ''
         cognome = col3.text_input("Nome")
         cognome_query = f"Cognome = '{cognome}'" if cognome != "" else ''
 
@@ -29,7 +32,6 @@ def dataCorsi():
     with st.expander("Istruttori", True):
         elencoIstruttori = execute_query(st.session_state["connection"], query)
         df_istruttori = pd.DataFrame(elencoIstruttori)
-        print(df_istruttori)
         if df_istruttori.empty:
             st.warning("Non ci sono istruttori con queste caratteristiche")
         else:
@@ -40,7 +42,9 @@ def dataCorsi():
                 col1.text(f"Data di Nascita: {row['DataNascita']}")
                 col1.text(f"Email: {row['Email']}")
                 col1.text(f"Telefono: {row['Telefono']}")
-                col2.image("images/polito_white.png")
+                x = randint(1,4)
+                percorso = f"images/{x}.png"
+                col2.image(percorso, width=100)
 
 
 

@@ -16,15 +16,15 @@ st.set_page_config(
 
 col1, col2 = st.columns([3,2])
 with col1:
-    col3, col4 = st.columns(2)
-    col3.title(":red[#4 Quaderno]")
-    col4.image("images/dbdmg.png", width= 100)
-    st.markdown("# Laboratorio di :blue[Streamlit]")
-    st.markdown("## :red-background[L'obiettivo é quello di creare un’applicazione multi-pagina per visualizzare le principali informazioni contenute nel database e permettere all’utente di aggiungerne di nuove]")
-    st.markdown("### :blue[Filippo Carlone] s311016")
+    col1.title(":red[#4 Quaderno]")
+    col1.markdown("# Laboratorio di :blue[Streamlit]")
+    col1.markdown("## *L'obiettivo é quello di creare un’applicazione multi-pagina per visualizzare le principali informazioni contenute nel database e permettere all’utente di aggiungerne di nuove*")
+    col1.markdown("### :blue[Filippo Carlone] s311016")
+
 
 with col2:
     st.image("images/polito_white.png")
+
 
 def createHome():
     # creo il barChart, mi servono i giorni della settimana ed i count raggruppati per giorno.
